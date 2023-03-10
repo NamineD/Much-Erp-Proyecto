@@ -1,0 +1,151 @@
+:root {
+    --header-height: 3rem;
+    --nav-width: 68px;
+
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  main {
+    position: relative;
+    margin: var(--header-height) 0 0 0;
+    padding: 0 1rem;
+    font-size: 1rem;
+    font-family: 'Nunito Sans', sans-serif;
+    transition: 0.5s;
+  }
+  
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: var(--header-height);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    transition: 0.5s;
+    background: none;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    border-top-color: rgb(224, 224, 224);
+    border-right-color: rgb(224, 224, 224);
+    border-left-color: rgb(224, 224, 224);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
+  }
+  
+  .header-toggle {
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: var(--first-color);
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -30%;
+    height: 100vh;
+    width: var(--nav-width);
+    background-color: rgb(41, 37, 25);
+    padding-top: 1rem;
+    transition: 0.5s;
+  }
+  
+  .nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    height: 100%;
+  }
+  
+  .nav-logo,
+  .nav-link {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    column-gap: 2rem;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+  }
+  
+  .nav-logo {
+    
+    height: 64px;
+    min-height: 64px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 16px;
+
+    margin-bottom: 2rem;
+  }
+  
+  .nav-logo-icon {
+    width: 35px;
+    min-width: 35px;
+    height: 35px;
+    min-height: 35px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: white;
+    font-weight: 700;
+    background: linear-gradient(45deg, rgb(21, 87, 205) 0%, rgb(90, 225, 255) 100%);
+    cursor: pointer;
+    
+  }
+  
+  .nav-logo-name {
+    margin: 0px;
+    font-size: 0.857143rem;
+    line-height: 1.75;
+    color: rgb(0, 152, 229);
+  }
+  
+  .nav-link {
+    position: relative;
+    color: white;
+    transition: 0.5s;
+    margin-bottom: 1.5rem;
+  }
+  
+  .show {
+    left: 0;
+  }
+  
+  .space-toggle {
+    padding-left: calc(var(--nav-width) + 1rem);
+  }
+  
+  @media screen and (min-width: 768px) {
+    main {
+      margin: calc(var(--header-height) + 1rem) 0 0 0;
+      padding: 0 1rem 0 calc(var(--nav-width) + 2rem);
+    }
+  
+    .header {
+      height: calc(var(--header-height) + 1rem);
+      padding-left: calc(var(--nav-width) + 2rem);
+    }
+  
+    .sidebar {
+      left: 0;
+      padding: 1rem 0 0 0;
+    }
+  
+    .show {
+      width: calc(var(--header-height) + 156px);
+    }
+  
+    .space-toggle {
+      padding-left: calc(var(--nav-width) + 188px);
+    }
+  }
+
