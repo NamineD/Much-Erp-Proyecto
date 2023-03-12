@@ -1,15 +1,15 @@
 import React from 'react'
 import Layout from '../../components/Layout/Layout'
-import './Species.css'
 
-const Species = () => {
+const Permisos = () => {
+  
   return (
     <>
       <Layout />
       <div className='container'>
         <div className="row">
           <div className="col-md-6 offset-md-2">
-            <h3>Especies y Variedades</h3>
+            <h3>Permisos</h3>
           </div>
         </div>
       </div>
@@ -17,4 +17,4 @@ const Species = () => {
   )
 }
 
-export default Species
+export default Permisos

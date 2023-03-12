@@ -74,7 +74,7 @@ const Header = ({ show, setShow }) => {
           </button>
           <button className="icons">
             <svg
-              class="svg-icon"
+              className="svg-icon"
               focusable="false"
               aria-hidden="true"
               viewBox="0 0 24 24"

@@ -1,3 +1,8 @@
+:root {
+    --header-height: 3rem;
+    --nav-width: 68px;
+}
+
 .header {
     position: fixed;
     top: 0;
@@ -14,12 +19,6 @@
     border-right-color: rgb(224, 224, 224);
     border-left-color: rgb(224, 224, 224);
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
-  }
-  
-  .header-toggle {
-    font-size: 1.25rem;
-    cursor: pointer;
-    color: var(--first-color);
   }
   
   .show {

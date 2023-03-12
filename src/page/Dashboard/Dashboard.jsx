@@ -1,10 +1,18 @@
 import React from 'react'
+import Layout from '../../components/Layout/Layout'
 
 const Dashboard = () => {
   return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
+    <>
+      <Layout />
+      <div className='container'>
+        <div className="row">
+          <div className="col-md-6 offset-md-2">
+            <h3>Dashboard</h3>
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
 
