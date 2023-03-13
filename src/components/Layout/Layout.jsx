@@ -1,7 +1,7 @@
 import React from 'react'
-import Sidebar from '../Sidebar/Sidebar'
 
 import { useSelector } from "react-redux";
+import SidebarV2 from '../Sidebar/SidebarV2';
 
 
 const Layout = () => {
@@ -16,7 +16,7 @@ const Layout = () => {
                 <span className="visually-hidden">Loading...</span>
             </div>
         </div> :
-      <Sidebar />
+      <SidebarV2 />
     }
     </>
   )

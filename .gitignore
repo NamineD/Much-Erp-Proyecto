@@ -11,8 +11,13 @@
 # production
 /build
 
+# carpetas
+/src/components/Header
+/src/components/Sidebar/Sidebar.jsx
+/src/components/Sidebar/Sidebar.css
+
+
 # misc
-.env
 .DS_Store
 .env.local
 .env.development.local
