@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchSomething } from '../../Redux/features/accessGroup'
+import { fetchSomething, deleteGroup } from '../../Redux/features/accessGroup'
 
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -21,44 +21,61 @@ const options = [
 
 const ITEM_HEIGHT = 48;
 
-const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
 const Groups = () => {
 
-const dispatch = useDispatch();
-  const { loading, data } = useSelector((state) => state.something);
+    const dispatch = useDispatch();
+    const { loading, data, error } = useSelector((state) => state.something);
 
-  useEffect(() => {
-    dispatch(fetchSomething());
-  }, []);
+    /* Input options */
 
-  /* Input options */
+    const [anchorEl, setAnchorEl] = useState(null);
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
 
-  const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  /* Switch */
 
-  /* Modal */
+    const [checked, setChecked] = useState(true);
 
-  const [openModal, setOpenModal] = useState(false);
-  const handleOpenModal = () => setOpenModal(true);
-  const handleCloseModal = () => setOpenModal(false);
+    const handleChange = (event) => {
+        setChecked(event.target.checked);
+    };
+
+
+  /* Modal Edit */
+
+    const [openModal, setOpenModal] = useState(false);
+    const handleOpenModal = () => setOpenModal(true);
+    const handleCloseModal = () => setOpenModal(false);
+
+
+    /* Delete  */
+
+    const handleDelete = async (id) => {
+        dispatch(deleteGroup(id)).then(() => {
+            dispatch(fetchSomething());
+        });
+    }
+
+    useEffect(() => {
+        dispatch(fetchSomething());
+    }, [])
+
 
   return (
     <>
+    <Button>Agregar</Button>
     { loading ? (<CircularProgress color="inherit" />) : 
         (<Box sx={{ display: 'flex', justifyContent: 'space-around', padding: 2 }}>
-        {data.map((idx) => (
-        <Card sx={{ width: '30%', padding: 1 }}>
-            <Button onClick={handleOpenModal}><ModalInput handleCloseModal={handleCloseModal} openModal={openModal}/></Button>
+        {data?.map((idx) => (
+        <Card sx={{ width: '30%', padding: 1 }} key={idx.id}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <CardHeader 
                     avatar={
@@ -93,18 +110,23 @@ const dispatch = useDispatch();
                     },
                     }}
                 >
-                    {options.map((option) => (
-                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-                        {option}
-                    </MenuItem>
-                    ))}
+                    {options.map((option) =>
+                        <MenuItem key={option} onClick={ () => option === 'Delete' ? handleDelete(idx.id) : handleOpenModal()}>
+                            {option}
+                        </MenuItem>
+                    )}
                 </Menu>
+                <ModalInput data={data} handleCloseModal={handleCloseModal} openModal={openModal}/>
                 </Box>
                 <CardContent sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Typography component="span" >
                         Status
                     </Typography>
-                    <Switch {...label} defaultChecked />
+                    <Switch 
+                        checked={idx.status}
+                        onChange={handleChange}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                    />
                 </CardContent>
         </Card>
         ))}

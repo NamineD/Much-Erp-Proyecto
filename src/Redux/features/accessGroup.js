@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+
 const BASE_URL = process.env.REACT_APP_API
 
 const client = axios.create({
@@ -26,10 +27,22 @@ export const fetchSomething = createAsyncThunk('/api/access-groups?limit=10&offs
   return response.data;
 });
 
+export const editGroup = createAsyncThunk(`/api/access-groups`, async (id, newData) => {
+  const res = await client.put(`/api/access-groups/${id}`, newData);
+  return res
+})
+
+export const deleteGroup = createAsyncThunk(`/api/access-groups`, async (id) => {
+  const res = await client.delete(`/api/access-groups/${id}`);
+  return res
+})
+
+
 export const slice = createSlice({
     name: 'something',
     initialState,
-    reducers: {},
+    reducers: {
+    },
     extraReducers: (builder) => {
       builder
         .addCase(fetchSomething.pending, (state) => {
@@ -46,6 +59,7 @@ export const slice = createSlice({
         });
     },
 });
+
 
 
 
